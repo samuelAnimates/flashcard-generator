@@ -18,14 +18,24 @@
 
 var ClozeCard = function(text, clozeStr){
 
-		if (frontStr === undefined || frontStr === null || backStr === undefined || backStr === null){
-			throw "ERROR: THERE WAS A PROBLEM MAKING A NEW CLOZE_CARD. \nENSURE THAT 2 STRINGS WERE PASSED AS INPUT TO CREATE A CLOZE CARD";
+		if (text === undefined || text === null || clozeStr === undefined || clozeStr === null){
+			throw "ERROR: THERE WAS A PROBLEM MAKING A NEW CLOZE_CARD. ENSURE THAT 2 STRINGS WERE PASSED AS INPUT TO CREATE A CLOZE CARD";
 		}
 
-		this.cloze = clozeStr;
-		his.partial = ;
-		this.fullText = text;
+    else if (text.indexOf(clozeStr) === -1){
+      throw "ERROR: UNABLE TO GENERATE A CLOZE-DELETION. ENSURE THAT YOU HAVE ENTERED A PARTIAL TEXT THAT APPEARS IN YOUR FULL TEXT EXACTLY (INCLUDING CAPITALIZATION AND PUNCTUATION)";
+    }
 
+    else{
+		  this.cloze = clozeStr;
+		  this.fullText = text;
+    }
 }
+
+ClozeCard.prototype.partial = function(){
+
+  this.fullText.replace(clozeStr, "______");
+
+}; 
 
 module.exports = ClozeCard;
